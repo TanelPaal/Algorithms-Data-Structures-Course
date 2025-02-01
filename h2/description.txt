@@ -1,0 +1,19 @@
+Description: https://enos.itcollege.ee/~japoia/algoritmid/ads_home2.html
+Make sure that:
+1. The insertion point is found by binary search.
+2. The binary insertion sort method is significantly faster
+ than the insertion sort method.
+3. The tail of the sorted part of an array is shifted right
+ using the System.arraycopy method - this makes your program
+ much faster than in case you shift elements in loop.
+4. If any sources are used, they are cited.
+
+Kirjeldus: https://enos.itcollege.ee/~japoia/algoritmid/ads_home2.html
+Kasutatud allikad tuleb viidata (programmi alguses kommentaaridena).
+Elemendi lisamiskoht kahendpistemeetodis tuleb leida kahendotsingu abil.
+Kahendpistemeetodi programm peab olema oluliselt kiirem tavalise
+ pistemeetodi programmist.
+Massiivi järjestatud osa (lisamiskoha järel) tuleb nihutada paremale
+ kasutades meetodit System.arraycopy. See on palju efektiivsem
+ pistekoha vabastamisest tsükli abil.
+
