@@ -278,7 +278,6 @@ public class Quaternion {
     * @param arg command line parameters
     */
    public static void main (String[] args) {
-      // TODO!!! Your example runs here
 
       // Create two quaternions
       Quaternion q1 = new Quaternion(1.0, 2.0, 3.0, 4.0);

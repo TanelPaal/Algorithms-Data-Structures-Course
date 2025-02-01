@@ -4,7 +4,6 @@ import java.util.ListIterator;
 public class LongStack{
 
    public static void main (String[] argum) {
-      // TODO!!! Your tests here!
       // Test 1: Test push and pop
       LongStack stack = new LongStack();
       stack.push(10);
@@ -44,30 +43,25 @@ public class LongStack{
    private LinkedList<Long> stack;
 
    public LongStack() {
-      // TODO!!! Your constructor here!
       stack = new LinkedList<>();
    }
 
    @Override
    public Object clone() throws CloneNotSupportedException {
-      // TODO!!! Your code here!
       LongStack cloned = new LongStack();
       cloned.stack = new LinkedList<>(this.stack);
       return cloned;
    }
 
    public boolean stEmpty() {
-      // TODO!!! Your code here!
       return stack.isEmpty();
    }
 
    public void push (long a) {
-      // TODO!!! Your code here!
       stack.push(a);
    }
 
    public long pop() {
-      // TODO!!! Your code here!
       if (stack.isEmpty()) {
          throw new RuntimeException("Stack is empty");
       }
@@ -75,7 +69,6 @@ public class LongStack{
    } // pop
 
    public void op (String s) {
-      // TODO!!!
       if (stack.size() < 2) {
          throw new RuntimeException("Stack underflow: not enough elements for operation " + s);
       }
@@ -105,7 +98,6 @@ public class LongStack{
    }
   
    public long tos() {
-      // TODO!!! Your code here!
       if (stack.isEmpty()) {
          throw new RuntimeException("Stack underflow: cannot read top of an empty stack.");
       }
@@ -114,7 +106,6 @@ public class LongStack{
 
    @Override
    public boolean equals (Object o) {
-      // TODO!!! Your code here!
       if (this == o) return true;
       if (o == null || getClass() != o.getClass()) return false;
       LongStack longStack = (LongStack) o;
@@ -123,7 +114,6 @@ public class LongStack{
 
    @Override
    public String toString() {
-      // TODO!!! Your code here!
       StringBuffer sb = new StringBuffer();
       ListIterator<Long> iterator = stack.listIterator(stack.size());
       while (iterator.hasPrevious()) {
@@ -133,7 +123,6 @@ public class LongStack{
    }
 
    public static long interpret (String pol) {
-      // TODO!!! Your code here!
       if (pol == null || pol.trim().isEmpty()) {
          throw new RuntimeException("Invalid expression: expression is null or empty. Expression: \"" + pol + "\"");
       }

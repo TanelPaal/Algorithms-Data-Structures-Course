@@ -108,7 +108,6 @@ public class Aout {
             case '\\': { tmp.append ("\\\\"); break; }
             case '\'': { tmp.append ("\\\'"); break; }
             case '\"': { tmp.append ("\\\""); break; }
-            // TODO!!! add more escapes if needed
             default: tmp.append (c);
          } // switch
       } // for k
@@ -178,7 +177,6 @@ public class Aout {
                for (int j=0; j < m[i].length; j++) {
                   String elem = "";
                   if (fs == null || fs.length() < 1) {
-                     // TODO!!! keera siit, kui tahad pilti muuta
                      elem = fString (m[i][j], 6) + "\t";
                   } else {
                      try {
@@ -225,7 +223,7 @@ public class Aout {
                for (int j=0; j < m[i].length; j++) {
                   String elem = "";
                   if (fs == null || fs.length() < 1)
-                     fs = "%5d";  // TODO!!! keera siit, kui vaja
+                     fs = "%5d";
                   try {
                      elem = String.format ((java.util.Locale)null,
                         fs, m[i][j]) + " "; // remove space if needed

@@ -130,42 +130,41 @@ public class Huffman {
     * @return decoded data (hopefully identical to original)
     */
    public byte[] decode (byte[] encodedData) {
-      byte[] decodedData = new byte[encodedData.length];
+      List<Byte> decodedData = new ArrayList<>();
+      Node currentNode = this.huffmanTree;
 
-      // Decode each byte of the encoded data by traversing the Huffman tree
-      int i = 0;
       for (byte b : encodedData) {
-         Huffman.Node currentNode = this.huffmanTree;
-
-         // If there is only one node, it means the tree has only one character
-         if (currentNode.left == null && currentNode.right == null) {
-            decodedData[i] = currentNode.symbol;
-            i++;
-            continue;
-         }
-
-         // Traverse the tree based on the bits of the encoded byte
-         String bString = Integer.toBinaryString(b);
+         String bString = String.format("%8s", Integer.toBinaryString(b & 0xFF)).replace(' ', '0');
          for (char bit : bString.toCharArray()) {
             currentNode = (bit == '1') ? currentNode.right : currentNode.left;
+            if (currentNode.left == null && currentNode.right == null) {
+               decodedData.add(currentNode.symbol);
+               currentNode = this.huffmanTree;
+            }
          }
-         decodedData[i] = currentNode.symbol;
-         i++;
       }
 
-      return decodedData;
+      byte[] result = new byte[decodedData.size()];
+      for (int i = 0; i < result.length; i++) {
+         result[i] = decodedData.get(i);
+      }
+
+      return result;
    }
 
-   // Method to display the frequency of each character
-   public void displayCharFrequencies() {
+   // Method to display character frequencies and Huffman codes
+   public void displayCharFrequenciesAndCodes() {
       for (Map.Entry<Byte, Integer> entry : this.charFreqs.entrySet()) {
-         System.out.println((char) entry.getKey().byteValue() + ": " + entry.getValue());
+         byte symbol = entry.getKey();
+         int frequency = entry.getValue();
+         String code = this.huffmanCodes.get(symbol);
+         System.out.println((char) symbol + ": freq = " + frequency + " & Huffman Code = " + code);
       }
    }
 
    /** Main method. */
    public static void main (String[] params) {
-      String tekst = "AAAAAAAAAAAAABBBBBBCCCDDEEF";
+      String tekst = "ABCDEF";
       byte[] orig = tekst.getBytes();
       Huffman huf = new Huffman(orig);
       byte[] kood = huf.encode (orig);
@@ -174,10 +173,9 @@ public class Huffman {
       System.out.println (Arrays.equals (orig, orig2));
       int lngth = huf.bitLength();
       System.out.println ("Length of encoded data in bits: " + lngth);
-      // TODO!!! Your tests here!
-      huf.displayCharFrequencies(); // Display character frequencies
+      huf.displayCharFrequenciesAndCodes();
 
-      // Test with a longer text
+/*      // Test with a longer text
       String text = "AAAAAAAAAAAAAAAAAAAAAAAAAAAADDDDDDDDDDDDDDDDDDDDDDDDDDSSSSSSSSSSSSSSSSSSSEEFFFFFFF";
       byte[] original = text.getBytes();
       Huffman huffman = new Huffman(original);
@@ -187,6 +185,6 @@ public class Huffman {
       int bitLength = huffman.bitLength();
       System.out.println("Length of encoded data in bits: " + bitLength);
       huffman.displayCharFrequencies(); // Display character frequencies
+      huf.displayCharFrequenciesAndCodes();*/
    }
 }
-
